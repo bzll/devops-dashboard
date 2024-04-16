@@ -1,0 +1,151 @@
+openapi: 3.0.0
+info:
+  version: v1
+  title: DevOps
+  description: ''
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/bzll/devops/v1
+paths:
+  /server:
+    get:
+      summary: Listar todos os servidores
+      parameters:
+        - name: type
+          in: query
+          description: Tipo de servidor (produção, desenvolvimento, qualidade)
+          required: true
+          schema:
+            type: string
+            enum: [production, development, quality-assurance]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Server'
+
+  /server/{nameServer}:
+    get:
+      summary: Obter detalhes de um servidor específico
+      parameters:
+        - name: nameServer
+          in: path
+          description: Nome do servidor
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Server'
+
+  /server/{nameServer}/services:
+    get:
+      summary: Listar todos os serviços de um servidor
+      parameters:
+        - name: nameServer
+          in: path
+          description: Nome do servidor
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Service'
+
+  /server/{nameServer}/services/{serviceName}:
+    get:
+      summary: Obter detalhes de um serviço específico
+      parameters:
+        - name: nameServer
+          in: path
+          description: Nome do servidor
+          required: true
+          schema:
+            type: string
+        - name: serviceName
+          in: path
+          description: Nome do serviço
+          required: true
+          schema:
+            type: string
+       
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+  
+  /server/{serverName}/services/{serviceName}/{action}:
+    post:
+      summary: Reiniciar serviço em um servidor específico
+      parameters:
+        - name: nameServer
+          in: path
+          description: Nome do servidor
+          required: true
+          schema:
+            type: string
+        - name: serviceName
+          in: path
+          description: Nome do serviço
+          required: true
+          schema:
+            type: string
+        - name: action
+          in: path
+          description: Ação
+          required: true
+          schema:
+            type: string
+            enum: [restart, stop, start]
+      responses:
+        '200':
+          description: OK
+
+
+components:
+  schemas:
+    Server:
+      type: object
+      properties:
+        host:
+          type: string
+        ip:
+          type: string
+        type:
+          type: string
+      example:
+        host: protheus-pri-qa.agroamazonia.com.br
+        ip: 10.254.20.12
+        type: quality-assurance
+
+    Service:
+      type: object
+      properties:
+        name:
+          type: string
+        status:
+          type: string
+        port:
+          type: integer
+      example:
+        name: dbaccess_primary
+        status: OK
+        port: 2222

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>DevOps Dashboard</h1>
+    <div>
+      <label for="serverType">Tipo de Servidor:</label>
+      <select id="serverType">
+        <option value="production">Produção</option>
+        <option value="development">Desenvolvimento</option>
+        <option value="quality-assurance">Qualidade</option>
+      </select>
+      <button id="syncServers">Sincronizar Servidores</button>
+      <button id="syncServices">Sincronizar Serviços</button>
+      <select id="serviceActions"> <!-- Substituído botão por select box -->
+        <option value="none">Ação para os itens selecionados</option>
+        <option value="restart">Reiniciar Serviços Selecionados</option>
+        <option value="start">Iniciar Serviços Selecionados</option>
+        <option value="stop">Pausar Serviços Selecionados</option>
+      </select>
+    </div>
+  </header>
+  <main>
+    <table id="servicesTable">
+      <thead>
+        <tr>
+          <th>Servidor</th>
+          <th>IP</th>
+          <th>Tipo</th>
+          <th>Serviço</th>
+          <th>Porta</th>
+          <th>Status</th>
+          <th>Ações</th>
+          <th><input type="checkbox" id="checkAll"></th> <!-- Adicionado input de checkbox -->
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Os dados da tabela serão preenchidos dinamicamente com JavaScript -->
+      </tbody>
+    </table>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

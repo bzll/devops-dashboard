@@ -1,0 +1,84 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #212121;
+  color: #fff;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  background-color: #31363F; /* Cor mais bonita para os botões */
+  color: white;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+select {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  background-color: #555; /* Cor de fundo para o selectbox */
+  color: white;
+}
+
+select:hover {
+  opacity: 0.8;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #444;
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #333;
+}
+
+th {
+  text-align: left;
+}
+
+tr:hover {
+  background-color: #333;
+}
+
+.status-icon {
+  width: 20px;
+}
+
+.success {
+  background-color: #4CAF50;
+}
+
+.warning {
+  background-color: #FFC107;
+}
+
+.error {
+  background-color: #F44336;
+}
