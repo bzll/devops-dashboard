@@ -1,6 +1,5 @@
-const baseUrl = 'https://virtserver.swaggerhub.com/bzll/devops/v1'; // URL base dos endpoints
+const baseUrl = 'https://virtserver.swaggerhub.com/bzll/devops/v1'; 
 
-// Função para preencher a tabela com os dados dos serviços
 function fillTable() {
     const serverType = document.getElementById('serverType').value;
 
@@ -11,11 +10,9 @@ function fillTable() {
             tableBody.innerHTML = '';
 
             servers.forEach(server => {
-                // Obter os serviços para cada servidor
                 fetch(`${baseUrl}/server/${server.host}/services`)
                     .then(response => response.json())
                     .then(services => {
-                        // Preencher a tabela com os serviços obtidos
                         services.forEach(service => {
                             const row = document.createElement('tr');
                             let classStatus = 'error'
@@ -48,7 +45,6 @@ function fillTable() {
         })
         .catch(error => console.error('Erro ao preencher a tabela:', error));
 }
-// Função para sincronizar um serviço específico
 function syncService(serverName, serviceName) {
     fetch(`${baseUrl}/server/${serverName}/services/${serviceName}`)
         .then(response => {
@@ -60,7 +56,6 @@ function syncService(serverName, serviceName) {
         .catch(error => console.error('Erro ao sincronizar o serviço:', error));
 }
 
-// Função para reiniciar/iniciar/pausar serviços selecionados conforme a ação selecionada
 function performActionOnSelectedServices() {
     const selectedAction = document.getElementById('serviceActions').value;
 
@@ -80,31 +75,12 @@ function performActionOnSelectedServices() {
                     throw new Error(`Erro ao ${selectedAction} do serviço ${serviceName} do servidor ${serverName}`);
                 }
                 alert(`Ação "${selectedAction}" aplicada com sucesso no serviço ${serviceName} do servidor ${serverName}.`);
-
-                // Após a execução da ação, retornar selectedAction para "none"
             })
             .catch(error => console.error(`Erro ao ${selectedAction} o serviço ${serviceName} do servidor ${serverName}:`, error));
     });
     document.getElementById('serviceActions').value = "none";
 }
 
-// Event listener para o botão de sincronizar servidores
-document.getElementById('syncServers').addEventListener('click', fillTable);
-
-// Event listener para o botão de sincronizar serviços
-document.getElementById('syncServices').addEventListener('click', fillTable);
-
-
-// Atualização do evento para o menu suspenso de ações nos serviços selecionados
-document.getElementById('serviceActions').addEventListener('change', performActionOnSelectedServices);
-
-// Preencher a tabela com os dados ao carregar a página
-window.onload = fillTable;
-
-// Event listener para selecionar todos ou desmarcar todos ao clicar no título da coluna "Selecionar"
-document.getElementById('checkAll').addEventListener('click', toggleSelectAll);
-
-// Função para selecionar todos ou desmarcar todos
 function toggleSelectAll() {
     const checkboxes = document.querySelectorAll('input[name="selectedServices"]');
     const checkAll = document.getElementById('checkAll');
@@ -112,3 +88,13 @@ function toggleSelectAll() {
         checkbox.checked = checkAll.checked;
     });
 }
+
+document.getElementById('syncServers').addEventListener('click', fillTable);
+
+document.getElementById('syncServices').addEventListener('click', fillTable);
+
+document.getElementById('serviceActions').addEventListener('change', performActionOnSelectedServices);
+
+document.getElementById('checkAll').addEventListener('click', toggleSelectAll);
+
+window.onload = fillTable;

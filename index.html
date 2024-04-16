@@ -18,7 +18,7 @@
       </select>
       <button id="syncServers">Sincronizar Servidores</button>
       <button id="syncServices">Sincronizar Serviços</button>
-      <select id="serviceActions"> <!-- Substituído botão por select box -->
+      <select id="serviceActions">
         <option value="none">Ação para os itens selecionados</option>
         <option value="restart">Reiniciar Serviços Selecionados</option>
         <option value="start">Iniciar Serviços Selecionados</option>
@@ -37,11 +37,10 @@
           <th>Porta</th>
           <th>Status</th>
           <th>Ações</th>
-          <th><input type="checkbox" id="checkAll"></th> <!-- Adicionado input de checkbox -->
+          <th><input type="checkbox" id="checkAll"></th>
         </tr>
       </thead>
       <tbody>
-        <!-- Os dados da tabela serão preenchidos dinamicamente com JavaScript -->
       </tbody>
     </table>
   </main>
